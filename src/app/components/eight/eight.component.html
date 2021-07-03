@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <p>eight works!</p>
+  <app-items></app-items>
+  <ul *ngFor="let item of items">
+    <li>{{ item.name }}={{ item.id }}</li>
+  </ul>
+  <p>{{ errorMsg }}</p>
+  <app-host></app-host>
+</div>
+

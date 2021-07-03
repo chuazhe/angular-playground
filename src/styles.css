@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+.one {
+  color    : darkblue;
+  font-size: large;
+}
+
+.two {
+  color    : yellow;
+  font-size: smaller;
+}
+
+.three {
+  color    : brown;
+  font-size: smaller;
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-special {
+  color: purple;
+}

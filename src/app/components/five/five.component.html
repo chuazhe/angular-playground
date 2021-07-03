@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <input type="text" class="form-control" (input)="updateText($event)" />
+  <p *ngIf="text.length > 0">Text: {{ text }}</p>
+  <p>Last Input Character: {{ Char }}</p>
+  <br />
+  <input type="text" [(ngModel)]="userName" />
+  <p>Username: {{ userName }}</p>
+  <button (click)="onReset()">Reset</button>
+  <p *ngIf="isReset; else appear">Reset</p>
+  <ng-template #appear>
+    <p>Hello World!</p>
+  </ng-template>
+  <br />
+  <p [ngStyle]="{ color: getColor() }" [ngClass]="{ good: status === true }">
+    Test
+  </p>
+</div>

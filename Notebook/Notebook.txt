@@ -1,0 +1,260 @@
+
+<Use case>:
+
+<Notes>:
+
+<Steps>:
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+If statement
+<Notes>:
+
+<Steps>:
+<app-seven *ngIf="message === 'seven'"></app-seven>
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Transfer data from child component to parent component
+<Notes>:
+$event is the event itself.
+<Steps>:
+@Output() public childEvent = new EventEmitter(); ->in child component
+this.childEvent.emit("Hello from child component"); ->in child component
+<app-nav-bar (childEvent)="message=$event"></app-nav-bar> ->in parent component
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Transfer data from parent component to child component
+<Notes>:
+
+<Steps>:
+  [parentData]="count" -> in parent component
+  
+  // Assign without alias
+  @Input() parentData;
+  // Assign with alias
+  @Input("parentData") count; -> in child component
+
+----------------------------------------------------------------------
+
+<Use case>:
+Attribute Directive
+<Notes>:
+
+<Steps>:
+run ng g d <path>
+
+@Directive({
+  selector: '[appAttributeDirective]'
+})
+<p appAttributeDirective>host works!</p>
+
+----------------------------------------------------------------------
+
+<Use case>:
+Attach HostBinding
+<Notes>:
+
+<Steps>:
+Create Attribute Directive
+
+export class AttributeDirectiveDirective implements OnInit {
+
+  constructor(private elRef: ElementRef, private renderer: Renderer2) { }
+
+  ngOnInit(){
+    this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue')
+  }
+
+  @HostListener('mouseenter') mouseover(){
+    this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'green')
+  }
+
+  @HostListener('mouseleave') mouseleave(){
+    this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue')
+  }
+
+}
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Event Binding
+<Notes>:
+HTML DOM Event list: https://www.w3schools.com/jsref/dom_obj_event.asp
+<Steps>:
+<button (click)="onReset()">Reset</button>
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+String Interpolation/ One-way Binding
+<Notes>:
+
+<Steps>:
+<p>Username: {{userName}}</p>
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Template statement
+<Notes>:
+If isReset is true, print Reset
+If isReset is false, output ng-template appear
+<Steps>:
+<p *ngIf="isReset else appear">Reset</p>
+<ng-template #appear>
+    <p>Hello World!</p>
+</ng-template>
+<br>
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Angular Type
+<Notes>:
+
+<Steps>:
+<p [ngStyle]="{color: getColor()}">Test</p>
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Angular Class
+<Notes>:
+
+<Steps>:
+<p [ngClass] = "{good: status === true}">Test</p>
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+For Statement
+<Notes>:
+
+<Steps>:
+<ul *ngFor="let item of items">
+  <li>{{ item.name }}={{ item.id }}</li>
+</ul>
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Style Binding
+<Notes>:
+
+<Steps>:
+<p [style.color]="hasError? 'red' : 'green' ">1</p>
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Two-way Binding
+<Notes>:
+
+<Steps>:
+<input type="text" [(ngModel)] = "title">
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Basic Angular Service class
+<Notes>:
+
+<Steps>:
+In Service Class ->
+
+interface IItem {
+  id: string;
+  name: string;
+}
+
+export class ItemService {
+  constructor(private _http: HttpClient) { }
+
+  url = '/assets/data/items.json';
+
+  getItems(): Observable<IItem[]> {
+    // return  [
+    //   {"id" : "1", "name": "test"},
+    //   {"id" : "3", "name": "test3"}
+
+    // ];
+    return this._http
+      .get<IItem[]>(this.url)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  errorHandler(error: HttpErrorResponse) {
+    return throwError(error.message || 'Server Error');
+  }
+}
+
+In Component Class ->
+
+  constructor(private _itemService: ItemService) {}
+
+  ngOnInit(): void {
+    this._itemService.getItems().subscribe(
+      (data2) => (this.items = data2),
+      (error) => (this.errorMsg = error)
+    );
+  }
+
+
+----------------------------------------------------------------------
+
+<Use case>:
+Point to Input State and Validity
+<Notes>:
+touched, untouched, dirty, pristine, valid, invalid
+<Steps>:
+#name="ngModel"
+
+Use {{name.untouched}}, {{name.pristine}}, ...  to check
+
+----------------------------------------------------------------------
+
+<Use case>:
+HTML <option> value Attribute
+<Notes>:
+Value is sent to server for processing
+<Steps>:
+  <select id="cars" name="cars">
+    <option value="volvo">Volvo XC90</option>
+    <option value="saab">Saab 95</option>
+    <option value="mercedes">Mercedes SLK</option>
+    <option value="audi">Audi TT</option>
+  </select>
+----------------------------------------------------------------------
+
+<Use case>:
+it block in Angular testing and know parameterless arrow function
+<Notes>:
+  it(a: string, b: function)
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+  
+let Print = () => console.log("Hello TypeScript"); is equal to Print(); //Output: Hello TypeScript  
+
+<Steps>:
+-
+
+----------------------------------------------------------------------

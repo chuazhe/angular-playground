@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <button (click)="addItem()">Display Details</button>
+  <div *ngFor="let item of items; let i = index">
+    <p
+      [ngStyle]="{ backgroundColor: i >= 5 ? 'blue' : 'none' }"
+      [ngClass]="{ white: i >= 5 }"
+    >
+      Fish: {{ item }}
+    </p>
+    <p
+      [style.color]="reachFive()"
+      [ngStyle]="{ backgroundColor: i >= 5 ? 'yellow' : 'none' }"
+    >
+      Index: {{ i + 1 }}
+    </p>
+  </div>
+  <app-item (childEvent)="message = $event" [parentData]="count"></app-item>
+  <h2>{{ person | json }}</h2>
+  <h4>{{ date }}</h4>
+  <h3>{{ date | date: 'short' }}</h3>
+</div>

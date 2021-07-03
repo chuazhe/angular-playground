@@ -1,0 +1,24 @@
+<!-- <app-eight></app-eight> -->
+<!-- <router-outlet></router-outlet>
+<nav>
+    <a routerLink="/one" routerLinkActive="active">One</a>
+    <br>
+    <a routerLink="/two" routerLinkActive="active">Two</a>
+</nav> -->
+<app-nav-bar (childEvent)="message = $event"></app-nav-bar>
+<app-five *ngIf="message === 'home'"></app-five>
+<app-seven *ngIf="message === 'seven'"></app-seven>
+<app-eight *ngIf="message === 'eight'"></app-eight>
+<div *ngIf="message === 'recipe'">
+  <app-item-list (childEvent)="obj = $event"></app-item-list>
+  <app-item-detail [parentData]="obj"></app-item-detail>
+</div>
+<app-reactive-form *ngIf="message === 'reactive'"></app-reactive-form>
+<app-template-driven-form
+  *ngIf="message === 'template'"
+></app-template-driven-form>
+<!-- <app-host></app-host> -->
+<!-- <button class="btn btn-default" (click)="onClick()">Test</button> -->
+<!-- <app-item-list></app-item-list> -->
+<!-- <app-lifecycle></app-lifecycle> -->
+<!-- <app-reactive-form></app-reactive-form> -->
